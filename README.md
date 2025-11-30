@@ -7,15 +7,18 @@ Toteutus seuraa MVC-arkkitehtuuria sekä hyödyntää Repository- ja Service -su
 
 ## Projektin rakenne
 
-# Tuntiharjoitus 4A – Products API (ASP.NET Core)
-
-Tämä projekti toteuttaa yksinkertaisen tuotteiden hakuun perustuvan REST-rajapinnan ASP.NET Core Web API -sovelluksella.  
-Toteutus seuraa MVC-arkkitehtuuria sekä hyödyntää Repository- ja Service -suunnittelumalleja.
-
----
-
-## Projektin rakenne
-
+tuntiharjoitus_4A/
+├── Controllers/
+│ └── ProductsController.cs
+├── Models/
+│ └── Tuote.cs
+├── Repositories/
+│ └── ProductsRepository.cs
+├── Services/
+│ └── ProductsService.cs
+├── ProductsApi.csproj
+├── Program.cs
+└── README.md
 
 ---
 
