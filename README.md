@@ -7,6 +7,7 @@ Toteutus seuraa MVC-arkkitehtuuria sekä hyödyntää Repository- ja Service -su
 
 ## Projektin rakenne
 
+```
 tuntiharjoitus_4A/
 ├── Controllers/
 │ └── ProductsController.cs
@@ -19,6 +20,7 @@ tuntiharjoitus_4A/
 ├── ProductsApi.csproj
 ├── Program.cs
 └── README.md
+```
 
 ---
 
