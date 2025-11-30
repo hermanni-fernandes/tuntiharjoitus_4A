@@ -10,9 +10,9 @@ namespace ProductsApi.Controllers
     {
         private readonly ProductsService _service;
 
-        public ProductsController()
+        public ProductsController(ProductsService service)
         {
-            _service = new ProductsService();
+            _service = service;
         }
 
         [HttpGet]

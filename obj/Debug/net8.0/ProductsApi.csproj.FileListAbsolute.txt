@@ -31,3 +31,4 @@
 /Users/diegofernandes/Documents/tuntiharjoitus_4A/obj/Debug/net8.0/ProductsApi.pdb
 /Users/diegofernandes/Documents/tuntiharjoitus_4A/obj/Debug/net8.0/ProductsApi.genruntimeconfig.cache
 /Users/diegofernandes/Documents/tuntiharjoitus_4A/obj/Debug/net8.0/ref/ProductsApi.dll
+/Users/diegofernandes/Documents/tuntiharjoitus_4A/obj/Debug/net8.0/ProductsApi.sourcelink.json

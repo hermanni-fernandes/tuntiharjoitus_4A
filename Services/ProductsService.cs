@@ -7,9 +7,9 @@ namespace ProductsApi.Services
     {
         private readonly ProductsRepository _repository;
 
-        public ProductsService()
+        public ProductsService(ProductsRepository repository)
         {
-            _repository = new ProductsRepository();
+            _repository = repository;
         }
 
         public List<Tuote> GetAllProducts()
