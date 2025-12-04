@@ -1,7 +1,9 @@
-# Tuntiharjoitus 4A – Products API (ASP.NET Core)
+# Tuntiharjoitus 4A – Category + Products API (ASP.NET Core)
 
-Tämä projekti toteuttaa yksinkertaisen tuotteiden hakuun perustuvan REST-rajapinnan ASP.NET Core Web API -sovelluksella.  
-Toteutus seuraa MVC-arkkitehtuuria sekä hyödyntää Repository- ja Service -suunnittelumalleja.
+Tämä projekti toteuttaa REST-rajapinnan ASP.NET Core Web API -sovelluksella.  
+Tehtävän tavoitteena oli lisätä kategoriaominaisuus (Category) aiempaan tuotteiden API:in.
+
+Toteutus sisältää REST-endpointit kategorioille, kategorian omistajan lisäyksen sekä sen, että jokainen tuote (Tuote) kuuluu johonkin kategoriaan.
 
 ---
 
@@ -10,89 +12,62 @@ Toteutus seuraa MVC-arkkitehtuuria sekä hyödyntää Repository- ja Service -su
 ```
 tuntiharjoitus_4A/
 ├── Controllers/
-│ └── ProductsController.cs
+│ ├── ProductsController.cs
+│ └── CategoriesController.cs
 ├── Models/
-│ └── Tuote.cs
+│ ├── Tuote.cs
+│ └── Category.cs
 ├── Repositories/
-│ └── ProductsRepository.cs
+│ ├── ProductsRepository.cs
+│ └── CategoriesRepository.cs
 ├── Services/
-│ └── ProductsService.cs
-├── ProductsApi.csproj
+│ ├── ProductsService.cs
+│ └── CategoriesService.cs
 ├── Program.cs
 └── README.md
 ```
 
 ---
 
-## Toteutetut ominaisuudet
+## Toteutetut ominaisuudet (Tehtävä 4A)
 
-### **1. Malli (Model)**
-`Tuote`-luokka kuvaa yksittäistä tuotetta:
+### 1. Category-malli
+Category sisältää seuraavat kentät:
+- **Id** (yksilöllinen tunniste)
+- **Name** (uniikki tekstikenttä)
+- **Owner** (sisäänkirjautunut käyttäjä – mockattu arvoksi `"test_user"`)
 
-- Id  
-- Nimi  
-- Kuvaus  
-- Hinta  
+### 2. Category REST-endpointit
+| Metodi | Polku | Kuvaus |
+|--------|-------|--------|
+| GET | `/api/categories` | Hae kaikki kategoriat |
+| GET | `/api/categories/{id}` | Hae yksittäinen kategoria omistajatiedon kanssa |
+| POST | `/api/categories` | Lisää uusi kategoria, johon lisätään omistaja automaattisesti |
 
----
+**Owner lisätään aina automaattisesti palvelimella**, eikä sitä lähetetä pyynnössä.
 
-### **2. Repository-kerros**
-`ProductsRepository` sisältää tuotteiden ”tietokannan” (lista kovakoodatuista tuotteista) sekä metodit:
+### 3. Tuote kuuluu kategoriaan
+Tuote-malliin lisättiin kenttä:
+public int CategoryId { get; set; }
 
-- `GetAll()` – palauttaa kaikki tuotteet  
-- `GetById(id)` – palauttaa tuotteen ID:n perusteella  
-
-Repository vastaa tiedon hakemisesta.
-
----
-
-### **3. Service-kerros**
-`ProductsService` toimii sovelluslogiikan kerroksena ja välittää tietokantakyselyt repositorylle.
-
-- `GetAllProducts()`  
-- `GetProductById(id)`  
+Mock-dataan lisättiin tuotteille kategoriat, esim.:
+- Kahvi ja Tee → kategorian Id = 1
+- Suklaa → kategorian Id = 2
 
 ---
 
-### **4. Controller**
-`ProductsController` tarjoaa REST-rajapinnan:
+## Testaus Swaggerilla
 
-- **GET /api/Products** – palauttaa kaikki tuotteet  
-- **GET /api/Products/{id}** – palauttaa yksittäisen tuotteen  
+Käynnistä sovellus:
 
----
-
-## ▶ API:n käynnistäminen
-
-### 1. Asenna riippuvuudet (tarvittaessa)
-dotnet restore
-
-### 2. Käynnistä sovellus
 dotnet run
 
-Sovellus käynnistyy ja näyttää portin, esim:
-Now listening on: http://localhost:5011
+Swagger UI löytyy:
 
----
-
-## API-endpointit
-
-### Hae kaikki tuotteet
-**GET**
-/api/Products
-
-### Hae tuote ID:n perusteella
-**GET**
-
-### Hae tuote ID:n perusteella
-**GET**
-
----
-
-## Swagger-dokumentaatio
-Swagger UI löytyy käynnistyksen jälkeen osoitteesta:
-
-http://localhost:5011/swagger
+### Testattavat kohdat:
+✔ GET `/api/categories` → palauttaa kategoriat  
+✔ POST `/api/categories` → palauttaa automaattisesti Owner = `"test_user"`  
+✔ GET `/api/products` → sisältää CategoryId jokaisella tuotteella
 
 ---
 
@@ -109,11 +84,8 @@ http://localhost:5011/swagger
 
 ## Tavoite
 
-Harjoituksen tavoitteena on ymmärtää ja toteuttaa:
-
-- ASP.NET Core Web API -sovellus
+Oppia:
+- lisäämään uutta ominaisuutta olemassa olevaan API:in
 - kerrosarkkitehtuuri (Controller → Service → Repository)
-- erillinen mallikerros (Models)
-- testattavat ja selkeät REST-endpointit
-- Swagger-dokumentointi
-
+- mallien laajentaminen ja endpointtien lisääminen
+- automaattisen dokumentaation hyödyntäminen (Swagger)
