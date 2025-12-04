@@ -11,6 +11,8 @@ builder.Services.AddSwaggerGen();
 // Rekisteröidään Repository ja Service DI:hen
 builder.Services.AddScoped<ProductsRepository>();
 builder.Services.AddScoped<ProductsService>();
+builder.Services.AddScoped<CategoriesRepository>();
+builder.Services.AddScoped<CategoriesService>();
 
 var app = builder.Build();
 
