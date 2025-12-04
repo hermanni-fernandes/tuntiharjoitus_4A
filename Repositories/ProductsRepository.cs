@@ -6,9 +6,9 @@ namespace ProductsApi.Repositories
     {
         private readonly List<Tuote> _tuotteet = new()
         {
-            new Tuote { Id = 1, Nimi = "Kahvi", Kuvaus = "Tumma paahto kahvi", Hinta = 4.50 },
-            new Tuote { Id = 2, Nimi = "Tee", Kuvaus = "Vihreä tee", Hinta = 3.20 },
-            new Tuote { Id = 3, Nimi = "Suklaa", Kuvaus = "Maitosuklaa levy 200g", Hinta = 2.80 }
+            new Tuote { Id = 1, Nimi = "Kahvi", Kuvaus = "Tumma paahto kahvi", Hinta = 4.50, CategoryId = 1 },
+            new Tuote { Id = 2, Nimi = "Tee", Kuvaus = "Vihreä tee", Hinta = 3.20, CategoryId = 1 },
+            new Tuote { Id = 3, Nimi = "Suklaa", Kuvaus = "Maitosuklaa levy 200g", Hinta = 2.80, CategoryId = 2 }
         };
 
         public List<Tuote> GetAll()
