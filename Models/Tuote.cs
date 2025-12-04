@@ -6,5 +6,8 @@ namespace ProductsApi.Models
         public string Nimi { get; set; } = string.Empty;
         public string Kuvaus { get; set; } = string.Empty;
         public double Hinta { get; set; }
+
+        // Jokaisen tuotteen pitää kuulua johonkin kategoriaan
+        public int CategoryId { get; set; }
     }
 }
