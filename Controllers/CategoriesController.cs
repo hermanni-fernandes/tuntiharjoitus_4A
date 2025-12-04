@@ -41,6 +41,9 @@ namespace ProductsApi.Controllers
             if (string.IsNullOrWhiteSpace(category.Name))
                 return BadRequest(new { message = "Kategorian nimi on pakollinen" });
 
+            // Simuloidaan sisäänkirjautunut käyttäjä
+            category.Owner = "test_user";
+
             var created = _service.CreateCategory(category);
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
